@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OSAHN6_HFT_202231.Models\OSAHN6_HFT_202231.Models.csproj" />
+  </ItemGroup>
+
 </Project>
