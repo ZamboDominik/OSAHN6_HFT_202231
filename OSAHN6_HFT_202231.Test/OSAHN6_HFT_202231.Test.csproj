@@ -4,4 +4,10 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OSAHN6_HFT_202231.Logic\OSAHN6_HFT_202231.Logic.csproj" />
+    <ProjectReference Include="..\OSAHN6_HFT_202231.Models\OSAHN6_HFT_202231.Models.csproj" />
+    <ProjectReference Include="..\OSAHN6_HFT_202231.Repository\OSAHN6_HFT_202231.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
