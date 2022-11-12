@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSAHN6_HFT_202231.Repository;
+using System;
 
 namespace OSAHN6_HFT_202231
 {
@@ -6,7 +7,9 @@ namespace OSAHN6_HFT_202231
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            NBADbContext NBA = new NBADbContext();
+            
+            ;
         }
     }
 }
