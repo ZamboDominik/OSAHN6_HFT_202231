@@ -16,6 +16,7 @@ namespace OSAHN6_HFT_202231.Models
         public string Name { get; set; }
         public int Salary { get; set; }
         public string Position { get; set; }
+        public int TeamID { get; set; }
         [NotMapped]
         public virtual Team team { get; set; }
     }
