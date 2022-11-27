@@ -33,28 +33,29 @@ namespace OSAHN6_HFT_202231.Repository
           };
             List<Coach> coachList = new List<Coach>
         {
-            new Coach(){CoachId = 1, CoachName="Steve Kerr",TeamID = 1,team = teamArray[0],  Salary = 5 },
-            new Coach(){CoachId = 2, CoachName="Jason Kidd",TeamID=2,team = teamArray[1], Salary = 2 },
+            new Coach(){CoachId = 1, CoachName="Steve Kerr",TeamID = 1,  Salary = 5 },
+            new Coach(){CoachId = 2, CoachName="Jason Kidd",TeamID=2, Salary = 2 },
 
         };
             List<Player> playerList = new List<Player>()
          {
-                new Player{ PlayerId = 1,Name = "Stephen Curry",team = teamArray[0],TeamID=1, Position = "PG", Salary=33},
-                new Player{ PlayerId = 2,Name = "Klay Thompson",team = teamArray[0],TeamID=1, Position = "SG", Salary=20},
-                new Player{ PlayerId = 3,Name = "Draymond Green",team = teamArray[0],TeamID=1, Position = "PF", Salary=20},
-                new Player{ PlayerId = 4,Name = "Kevon Looney",team = teamArray[0],TeamID=1, Position = "C", Salary=5},
-                new Player{ PlayerId = 5,Name = "Jordan Poole",team = teamArray[0],TeamID=1, Position = "PG", Salary=20},
-                new Player{ PlayerId = 6,Name = "Luka Doncic",team = teamArray[1],TeamID=2, Position = "PG", Salary=30},
-                new Player{ PlayerId = 7,Name = "Christion Wood",team = teamArray[1],TeamID=2, Position = "PF", Salary=24},
-                new Player{ PlayerId = 8,Name = "Spencer Dinwiddie",team = teamArray[1], TeamID=2,Position = "SG", Salary=20},
-                new Player{ PlayerId = 9,Name = "JaVale McGee",team = teamArray[1],TeamID=2, Position = "C", Salary=7},
-                new Player{ PlayerId = 10,Name = "Tim Hardaway",team = teamArray[1],TeamID=2, Position = "SF", Salary=18},
+                new Player{ PlayerId = 1,Name = "Stephen Curry",TeamID=1, Position = "PG", Salary=33},
+                new Player{ PlayerId = 2,Name = "Klay Thompson",TeamID=1, Position = "SG", Salary=20},
+                new Player{ PlayerId = 3,Name = "Draymond Green",TeamID=1, Position = "PF", Salary=20},
+                new Player{ PlayerId = 4,Name = "Kevon Looney",TeamID=1, Position = "C", Salary=5},
+                new Player{ PlayerId = 5,Name = "Jordan Poole",TeamID=1, Position = "PG", Salary=20},
+                new Player{ PlayerId = 6,Name = "Luka Doncic",TeamID=2, Position = "PG", Salary=30},
+                new Player{ PlayerId = 7,Name = "Christion Wood",TeamID=2, Position = "PF", Salary=24},
+                new Player{ PlayerId = 8,Name = "Spencer Dinwiddie", TeamID=2,Position = "SG", Salary=20},
+                new Player{ PlayerId = 9,Name = "JaVale McGee",TeamID=2, Position = "C", Salary=7},
+                new Player{ PlayerId = 10,Name = "Tim Hardaway",TeamID=2, Position = "SF", Salary=18},
          };
             modelBuilder.Entity<Player>().HasOne(t => t.team).WithMany(t => t.Players).HasForeignKey(t => t.TeamID);
-            //modelBuilder.Entity<Coach>().HasOne(t => t.team).WithOne(t => t.HeadCoach).HasForeignKey();
+            modelBuilder.Entity<Coach>().HasOne(t => t.team).WithOne(t => t.HeadCoach);
+            modelBuilder.Entity<Team>().HasData(teamArray);
             modelBuilder.Entity<Player>().HasData(playerList);
             modelBuilder.Entity<Coach>().HasData(coachList);
-            modelBuilder.Entity<Team>().HasData(teamArray);
+           
 
             base.OnModelCreating(modelBuilder);
         }

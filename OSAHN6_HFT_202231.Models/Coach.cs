@@ -15,6 +15,7 @@ namespace OSAHN6_HFT_202231.Models
         public int CoachId { get; set; }
         public string CoachName { get; set; }
         public int Salary { get; set; }
+        [ForeignKey(nameof(team))]
         public int TeamID { get; set; }
         [NotMapped]
         public virtual Team team { get; set; }
