@@ -9,9 +9,9 @@ namespace OSAHN6_HFT_202231.Repository
     {
         
     
-        DbSet<Team> Teams { get; set; }
-        DbSet<Player> Players { get; set; }
-        DbSet<Coach> Coaches { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Coach> Coaches { get; set; }
 
         public NBADbContext()
         {
