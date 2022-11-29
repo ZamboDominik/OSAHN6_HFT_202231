@@ -7,11 +7,11 @@ namespace OSAHN6_HFT_202231.Endpoint.Controllers
 {
     [Route("[controller]/[action]")]
     [ApiController]
-    public class NonCController : ControllerBase
+    public class StatController : ControllerBase
     {
         ITeamLogic logic;
 
-        public NonCController(ITeamLogic logic)
+        public StatController(ITeamLogic logic)
         {
             this.logic = logic;
         }

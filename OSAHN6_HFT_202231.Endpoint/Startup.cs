@@ -19,26 +19,29 @@ namespace OSAHN6_HFT_202231.Endpoint
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        /*public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        }
+        }*/
+        public Startup()
+        {
 
+        }
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<NBADbContext>();
-
+            services.AddTransient<IRepository<Team>, TeamRepository>();
             services.AddTransient<IRepository<Coach>, CoachRepository>();
             services.AddTransient<IRepository<Player>, PlayerRepository>();
-            services.AddTransient<IRepository<Team>, TeamRepository>();
 
 
+            services.AddTransient<ITeamLogic, TeamLogic>();
             services.AddTransient<ICoachLogic, CoachLogic>();
             services.AddTransient<IPlayerLogic, PlayerLogic>();
-            services.AddTransient<ITeamLogic, TeamLogic>();
+            
 
 
             services.AddControllers();
