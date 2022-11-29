@@ -72,5 +72,27 @@ namespace OSAHN6_HFT_202231.Logic
                           select p;
             return players;
         }
+        public IQueryable PositionStats() 
+        {
+            var positions = from t in repo.ReadAll()
+                            from p in t.Players
+                            group p.Salary by p.Position into g
+                            select new {Position=g.Key, AvgSalary = g.Average(), MaxSalary = g.Max(),MinSalary = g.Min()}
+                            ;
+            return positions;                 
+        }
+        public IQueryable StarPlayers()
+        {
+            var team = from t in repo.ReadAll()
+                       from p in t.Players
+                       where p.Salary == t.Players.Select(p => p.Salary).Max()
+                       select p;
+            return team;
+                       
+                       
+
+
+        }
+
     }
 }

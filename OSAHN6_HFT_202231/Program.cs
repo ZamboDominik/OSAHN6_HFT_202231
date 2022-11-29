@@ -14,6 +14,25 @@ namespace OSAHN6_HFT_202231
             TeamRepository team = new TeamRepository(NBA);
             TeamLogic tl = new TeamLogic(team);
             Console.WriteLine(tl.HighestSalary("Golden State Warriors"));
+           
+           
+            foreach (var item in tl.PlayerListByPos("Dallas Maverics", "PG"))
+            {
+                Console.WriteLine(item);
+            }
+            foreach (var item in tl.ListPlayersCoachedBy("Steve Kerr"))
+            {
+                Console.WriteLine(item);
+            }
+            foreach (var item in tl.PositionStats())
+            {
+                Console.WriteLine(item);
+            }
+            foreach (var item in tl.StarPlayers())
+            {
+                Console.WriteLine(item);
+            }
+            // Console.WriteLine(tl.);
             /*RestService rest = new RestService("http://localhost:33531/", typeof(Team).Name);
             CrudService crud = new CrudService(rest);
             NonCrudService nonCrud = new NonCrudService(rest);
