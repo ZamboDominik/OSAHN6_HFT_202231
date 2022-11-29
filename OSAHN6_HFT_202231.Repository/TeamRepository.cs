@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OSAHN6_HFT_202231.Repository
 {
-    internal class TeamRepository:Repository<Team>
+    public  class TeamRepository:Repository<Team>
     {
         public TeamRepository(NBADbContext ctx) : base(ctx)
         {
