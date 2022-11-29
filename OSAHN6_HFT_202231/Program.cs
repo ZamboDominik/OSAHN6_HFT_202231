@@ -1,4 +1,5 @@
-﻿using OSAHN6_HFT_202231.Models;
+﻿using OSAHN6_HFT_202231.Logic;
+using OSAHN6_HFT_202231.Models;
 using OSAHN6_HFT_202231.Repository;
 using System;
 using System.Runtime.ConstrainedExecution;
@@ -10,8 +11,10 @@ namespace OSAHN6_HFT_202231
         static void Main(string[] args)
         {
             NBADbContext NBA = new NBADbContext();
-
-            RestService rest = new RestService("http://localhost:33531/", typeof(Team).Name);
+            TeamRepository team = new TeamRepository(NBA);
+            TeamLogic tl = new TeamLogic(team);
+            Console.WriteLine(tl.HighestSalary("Golden State Warriors"));
+            /*RestService rest = new RestService("http://localhost:33531/", typeof(Team).Name);
             CrudService crud = new CrudService(rest);
             NonCrudService nonCrud = new NonCrudService(rest);
 
@@ -41,7 +44,7 @@ namespace OSAHN6_HFT_202231
                 .Add("Non-CRUD", () => statsSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
-            menu.Show();
+            menu.Show();*/
 
 
             ;

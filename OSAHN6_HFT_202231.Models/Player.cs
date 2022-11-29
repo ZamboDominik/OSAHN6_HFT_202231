@@ -19,5 +19,9 @@ namespace OSAHN6_HFT_202231.Models
         public int TeamID { get; set; }
         [NotMapped]
         public virtual Team team { get; set; }
+        public override string ToString()
+        {
+            return $"ID: {PlayerId} Name:{Name} Position:{Position} from {team.Name}";
+        }
     }
 }

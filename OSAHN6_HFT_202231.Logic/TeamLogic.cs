@@ -43,5 +43,34 @@ namespace OSAHN6_HFT_202231.Logic
         {
             this.repo.Update(item);
         }
+        public Player HighestSalary(string team) 
+        {
+            var highest = from t in repo.ReadAll()
+                          where t.Name == team
+                          from p in t.Players
+                          orderby p.Salary descending
+                          select p;
+                          
+                          
+                          
+            return highest.First();
+        }
+        public IQueryable<Player> PlayerListByPos(string team, string Pos) 
+        {
+            var list = from t in repo.ReadAll()
+                       where t.Name == team
+                       from p in t.Players
+                       where p.Position == Pos
+                       select p;
+            return list;
+        }
+        public IQueryable<Player> ListPlayersCoachedBy(string name) 
+        {
+            var players = from t in repo.ReadAll()
+                          where t.HeadCoach.CoachName == name
+                          from p in t.Players
+                          select p;
+            return players;
+        }
     }
 }

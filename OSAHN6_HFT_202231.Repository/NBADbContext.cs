@@ -33,8 +33,8 @@ namespace OSAHN6_HFT_202231.Repository
           };
             List<Coach> coachList = new List<Coach>
         {
-            new Coach(){CoachId = 1, CoachName="Steve Kerr",TeamID = 1,  Salary = 5 },
-            new Coach(){CoachId = 2, CoachName="Jason Kidd",TeamID=2, Salary = 2 },
+            new Coach(){CoachId = 1, CoachName="Steve Kerr",TeamID = 1,Salary = 5 },
+            new Coach(){CoachId = 2, CoachName="Jason Kidd",TeamID=2,Salary = 2 },
 
         };
             List<Player> playerList = new List<Player>()
