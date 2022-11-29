@@ -8,6 +8,12 @@ namespace OSAHN6_HFT_202231.Client
 {
     internal class NonCrudService
     {
+        private RestService rest;
+
+        public NonCrudService(RestService rest)
+        {
+            this.rest = rest;
+        }
 
     }
 }

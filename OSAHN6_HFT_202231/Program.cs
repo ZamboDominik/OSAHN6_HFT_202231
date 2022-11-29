@@ -1,4 +1,5 @@
-﻿using OSAHN6_HFT_202231.Logic;
+﻿using ConsoleTools;
+using OSAHN6_HFT_202231.Logic;
 using OSAHN6_HFT_202231.Models;
 using OSAHN6_HFT_202231.Repository;
 using System;
@@ -37,30 +38,36 @@ namespace OSAHN6_HFT_202231.Client
             CrudService crud = new CrudService(rest);
             NonCrudService nonCrud = new NonCrudService(rest);
 
-            var carSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("List", () => crud.List<Car>())
-                .Add("Create", () => crud.Create<Car>())
-                .Add("Delete", () => crud.Delete<Car>())
-                .Add("Update", () => crud.Update<Car>())
+            var TeamMenu = new ConsoleMenu(args, level: 1)
+                .Add("List", () => crud.List<Team>())
+                .Add("Create", () => crud.Create<Team>())
+                .Add("Delete", () => crud.Delete<Team>())
+                .Add("Update", () => crud.Update<Team>())
                 .Add("Exit", ConsoleMenu.Close);
 
-            var brandSubMenu = new ConsoleMenu(args, level: 1)
-                 .Add("List", () => crud.List<Brand>())
-                 .Add("Create", () => crud.Create<Brand>())
-                 .Add("Delete", () => crud.Delete<Brand>())
-                 .Add("Update", () => crud.Update<Brand>())
+            var PlayerSubMenu = new ConsoleMenu(args, level: 1)
+                 .Add("List", () => crud.List<Player>())
+                 .Add("Create", () => crud.Create<Player>())
+                 .Add("Delete", () => crud.Delete<Player>())
+                 .Add("Update", () => crud.Update<Player>())
                  .Add("Exit", ConsoleMenu.Close);
-
-            var statsSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("Average car price", () => nonCrud.AvgCarPrice())
-                .Add("Brand statistics", () => nonCrud.ReadBrandStats())
-                .Add("Cars by Price range", () => nonCrud.GetCarsByPriceRange())
+            var CoachSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("List", () => crud.List<Coach>())
+                .Add("Create", () => crud.Create<Coach>())
+                .Add("Delete", () => crud.Delete<Coach>())
+                .Add("Update", () => crud.Update<Coach>())
                 .Add("Exit", ConsoleMenu.Close);
+
+            /* var statsSubMenu = new ConsoleMenu(args, level: 1)
+                 .Add("Average car price", () => nonCrud.AvgCarPrice())
+                 .Add("Brand statistics", () => nonCrud.ReadBrandStats())
+                 .Add("Cars by Price range", () => nonCrud.GetCarsByPriceRange())
+                 .Add("Exit", ConsoleMenu.Close);*/
 
             var menu = new ConsoleMenu(args, level: 0)
-                .Add("Cars", () => carSubMenu.Show())
-                .Add("Brands", () => brandSubMenu.Show())
-                .Add("Non-CRUD", () => statsSubMenu.Show())
+                .Add("Teams", () => TeamMenu.Show())
+                .Add("Players", () => PlayerSubMenu.Show())
+                .Add("Coaches", () => CoachSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();
