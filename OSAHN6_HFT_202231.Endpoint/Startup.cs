@@ -44,7 +44,7 @@ namespace OSAHN6_HFT_202231.Endpoint
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CarDB.Endpoint", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NBADB.Endpoint", Version = "v1" });
             });
         }
 
@@ -55,7 +55,7 @@ namespace OSAHN6_HFT_202231.Endpoint
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CarDB.Endpoint v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NBADB.Endpoint v1"));
             }
 
             app.UseExceptionHandler(c => c.Run(async context =>
