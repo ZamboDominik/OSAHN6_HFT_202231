@@ -131,8 +131,6 @@ namespace OSAHN6_HFT_202231.Test
             Coach newc = new Coach() {CoachName ="Coach",Salary=77,TeamID=3  };
             coachLogic.Create(newc);
             mockCoachRepository.Verify(v => v.Create(newc), Times.Once);
-
-
         }
         [Test]
         public void TeamCreateTester()
@@ -141,6 +139,20 @@ namespace OSAHN6_HFT_202231.Test
             teamLogic.Create(t);
             mockTeamRepository.Verify(v=>v.Create(t),Times.Once);
         }
+        [Test]
+        public void TeamDeleteTester()
+        {
+            
+            teamLogic.Delete(1);
+            mockTeamRepository.Verify(v => v.Delete(1), Times.Once);
+        }
+        [Test]
+        public void PlayerDeleteTester()
+        {
+            playerLogic.Delete(1);
+            mockPlayerRepository.Verify(v => v.Delete(1), Times.Once);
+        }
+
 
     }
 }
