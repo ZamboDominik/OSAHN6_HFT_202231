@@ -4,6 +4,7 @@ using OSAHN6_HFT_202231.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,17 +23,23 @@ namespace OSAHN6_HFT_202231.Logic
 
         public void Create(Team item)
         {
+            if (item.Name.Length > 150 || item.Name.Length <= 0) throw new FormatException();
+            if(item.LuxuryTax < 0) throw new FormatException();
             this.repo.Create(item);
         }
 
         public void Delete(int id)
         {
-            this.repo.Delete(id);
+            if(repo.ReadAll().Select(x=> x.Id).Contains(id)) this.repo.Delete(id);
+            else throw new Exception("Not Found");
+
         }
 
         public Team Read(int id)
         {
-            return this.repo.Read(id);
+           
+            if (repo.ReadAll().Select(x => x.Id).Contains(id)) return this.repo.Read(id); 
+            else throw new Exception("Not Found");
         }
 
         public IQueryable<Team> ReadAll()
@@ -42,6 +49,9 @@ namespace OSAHN6_HFT_202231.Logic
 
         public void Update(Team item)
         {
+            if(item.Name.Length <= 0 || item.Name.Length > 100) throw new FormatException();
+            if(item.LuxuryTax <0 ) throw new FormatException();
+            if (repo.ReadAll().Select(x => x.Id).Contains(item.Id)) throw new FormatException();
             this.repo.Update(item);
         }
         public Player HighestSalary(string team) 
@@ -50,10 +60,7 @@ namespace OSAHN6_HFT_202231.Logic
                           where t.Name == team
                           from p in t.Players
                           orderby p.Salary descending
-                          select p;
-                          
-                          
-                          
+                          select p;           
             return highest.First();
         }
         public IQueryable<Player> PlayerListByPos(string team, string Pos) 
