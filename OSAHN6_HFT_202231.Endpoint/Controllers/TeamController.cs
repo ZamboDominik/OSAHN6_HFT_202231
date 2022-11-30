@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OSAHN6_HFT_202231.Logic;
+using OSAHN6_HFT_202231.Logic.Interfaces;
 using OSAHN6_HFT_202231.Models;
 using System.Collections.Generic;
 using System.Linq;

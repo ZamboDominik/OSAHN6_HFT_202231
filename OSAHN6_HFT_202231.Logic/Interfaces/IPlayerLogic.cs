@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSAHN6_HFT_202231.Logic
+namespace OSAHN6_HFT_202231.Logic.Interfaces
 {
     public interface IPlayerLogic
     {

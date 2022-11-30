@@ -1,4 +1,5 @@
-﻿using OSAHN6_HFT_202231.Models;
+﻿using OSAHN6_HFT_202231.Logic.Interfaces;
+using OSAHN6_HFT_202231.Models;
 using OSAHN6_HFT_202231.Repository;
 using System;
 using System.Linq;
