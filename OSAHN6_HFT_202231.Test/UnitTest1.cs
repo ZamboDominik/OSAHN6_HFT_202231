@@ -12,14 +12,20 @@ namespace OSAHN6_HFT_202231.Test
     public class Tests
     {
         TeamLogic teamLogic;
-        Mock<IRepository<Team>> mockRepository;
+        CoachLogic coachLogic;
+        PlayerLogic playerLogic;
+        Mock<IRepository<Team>> mockTeamRepository;
+        Mock<IRepository<Coach>> mockCoachRepository;
+        Mock<IRepository<Player>> mockPlayerRepository;
         Team team;
         Player player;
         Coach hc;
         [SetUp]
         public void Init()
         {
-            mockRepository = new Mock<IRepository<Team>>();
+            mockTeamRepository = new Mock<IRepository<Team>>();
+            mockCoachRepository = new Mock<IRepository<Coach>>();
+            mockPlayerRepository = new Mock<IRepository<Player>>(); 
             player = new Player();
             player.Name = "bela";
             player.Salary = 1;
@@ -46,8 +52,14 @@ namespace OSAHN6_HFT_202231.Test
             t2.Players = new List<Player>();
             t2.Players.Add(p2);
             List<Team> list =new List<Team> { team, t2 };
-            mockRepository.Setup(t => t.ReadAll()).Returns(list.AsQueryable);
-            teamLogic = new TeamLogic(mockRepository.Object);
+            mockTeamRepository.Setup(t => t.ReadAll()).Returns(list.AsQueryable);
+            List<Player> players = new List<Player>() { player,p2}; 
+            List<Coach> coaches = new List<Coach>() {hc,hc2 };
+            mockCoachRepository.Setup(c => c.ReadAll()).Returns(coaches.AsQueryable());
+            mockPlayerRepository.Setup(p => p.ReadAll()).Returns(players.AsQueryable());
+            teamLogic = new TeamLogic(mockTeamRepository.Object);
+            coachLogic = new CoachLogic(mockCoachRepository.Object);
+            playerLogic = new PlayerLogic(mockPlayerRepository.Object);
         }
 
         [Test]
@@ -57,7 +69,7 @@ namespace OSAHN6_HFT_202231.Test
 
             var actual = teamLogic.PositionStats();
 
-            mockRepository.Verify(mock => mock.ReadAll(),Times.Once);
+            mockTeamRepository.Verify(mock => mock.ReadAll(),Times.Once);
             Assert.That(actual,Has.Exactly(1).Items);
             
             foreach (var item in actual) 
@@ -66,5 +78,69 @@ namespace OSAHN6_HFT_202231.Test
             }
 
         }
+        [Test]
+        public void StarTester()
+        {
+            var actual = teamLogic.StarPlayers();
+            mockTeamRepository.Verify(mock => mock.ReadAll(), Times.Once);
+            Assert.That(actual, Has.Exactly(2).Items);
+        }
+        [Test]
+        public void ListPlayerCoachedByTest()
+        {
+            var actual = teamLogic.ListPlayersCoachedBy("bela2");
+            mockTeamRepository.Verify(mock => mock.ReadAll(), Times.Once);
+            Assert.That(actual, Has.Exactly(1).Items);
+            foreach (var item in actual)
+            {
+                Assert.That(item.Name,Is.EqualTo("bela"));
+            }
+        }
+        [Test]
+        public void PlayerListByPos()
+        {
+            var actual = teamLogic.PlayerListByPos("belaim","takarito");
+            mockTeamRepository.Verify(mock => mock.ReadAll(), Times.Once);
+            Assert.That(actual, Has.Exactly(1).Items);
+            foreach (var item in actual)
+            {
+                Assert.That(item.Name, Is.EqualTo("bela"));
+            }
+        }
+        [Test]
+        public void HighestSalTester() 
+        {
+            var actual = teamLogic.HighestSalary("belaim");
+            mockTeamRepository.Verify(mock => mock.ReadAll(), Times.Once);
+            //Assert.That(actual, Has.Exactly(1).Items);
+            Assert.That(actual.Name, Is.EqualTo("bela"));
+        }
+
+        [Test]
+        public void PlayerCreateTester() 
+        {
+            Player ujbela = new Player() {Name="ujbela",Position="SG",Salary=15,TeamID=1 };
+            playerLogic.Create(ujbela);
+            mockPlayerRepository.Verify(v => v.Create(ujbela), Times.Once);
+            
+        
+        }
+        [Test]
+        public void CoachCreateTester()
+        {
+            Coach newc = new Coach() {CoachName ="Coach",Salary=77,TeamID=3  };
+            coachLogic.Create(newc);
+            mockCoachRepository.Verify(v => v.Create(newc), Times.Once);
+
+
+        }
+        [Test]
+        public void TeamCreateTester()
+        {
+            Team t = new Team() { Name = "Dont", LuxuryTax = 89 };
+            teamLogic.Create(t);
+            mockTeamRepository.Verify(v=>v.Create(t),Times.Once);
+        }
+
     }
 }

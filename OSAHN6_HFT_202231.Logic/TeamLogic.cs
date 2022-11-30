@@ -88,10 +88,6 @@ namespace OSAHN6_HFT_202231.Logic
                        where p.Salary == t.Players.Select(p => p.Salary).Max()
                        select p;
             return team;
-                       
-                       
-
-
         }
 
     }
