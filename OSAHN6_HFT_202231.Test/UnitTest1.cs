@@ -31,7 +31,7 @@ namespace OSAHN6_HFT_202231.Test
             player.Name = "bela";
             player.Salary = 1;
             player.TeamID = 1;
-            player.Position = "takarito";
+            player.Position = "Janitor";
             hc = new Coach(); 
             hc.Salary = 1;
             hc.CoachId = 1;
@@ -47,7 +47,7 @@ namespace OSAHN6_HFT_202231.Test
             team.HeadCoach = hc;
             team.Players.Add(player);
             Team t2 = new Team() { Id = 2, Name = "Nembelak", LuxuryTax = 1 };
-            Player p2 = new Player() { Name ="nembela",team = t2,TeamID = 2,PlayerId=2,Position="takarito",Salary=1};
+            Player p2 = new Player() { Name ="nembela",team = t2,TeamID = 2,PlayerId=2,Position="Janitor",Salary=1};
             Coach hc2 = new Coach() { CoachName = "nembela2", team = t2, TeamID = 2, CoachId = 2, Salary = 1 };
             t2.HeadCoach = hc2;
             t2.Players = new List<Player>();
@@ -66,7 +66,7 @@ namespace OSAHN6_HFT_202231.Test
         [Test]
         public void StatTester()
         {
-            PositionStats stats = new PositionStats() {Position ="takarito",AvgSalary=1,MaxSalary=1,MinSalary=1 };
+            PositionStats stats = new PositionStats() {Position ="Janitor",AvgSalary=1,MaxSalary=1,MinSalary=1 };
 
             var actual = teamLogic.PositionStats();
 
@@ -100,7 +100,7 @@ namespace OSAHN6_HFT_202231.Test
         [Test]
         public void PlayerListByPos()
         {
-            var actual = teamLogic.PlayerListByPos("belaim","takarito");
+            var actual = teamLogic.PlayerListByPos("belaim","Janitor");
             mockTeamRepository.Verify(mock => mock.ReadAll(), Times.Once);
             Assert.That(actual, Has.Exactly(1).Items);
             foreach (var item in actual)
@@ -120,16 +120,16 @@ namespace OSAHN6_HFT_202231.Test
         [Test]
         public void PlayerCreateTester() 
         {
-            Player ujbela = new Player() {Name="ujbela",Position="SG",Salary=15,TeamID=1 };
-            playerLogic.Create(ujbela);
-            mockPlayerRepository.Verify(v => v.Create(ujbela), Times.Once);
+            Player newP = new Player() {Name="Me",Position="SG",Salary=15,TeamID=1 };
+            playerLogic.Create(newP);
+            mockPlayerRepository.Verify(v => v.Create(newP), Times.Once);
 
-            ujbela = new Player() { Name = "", Position = "SG", Salary = 15, TeamID = 1 };
+            newP = new Player() { Name = "", Position = "SG", Salary = 15, TeamID = 1 };
             Assert.Throws<FormatException>(() =>
             {
-                playerLogic.Create(ujbela);
+                playerLogic.Create(newP);
             });
-            mockPlayerRepository.Verify(x => x.Create(ujbela), Times.Never);
+            mockPlayerRepository.Verify(x => x.Create(newP), Times.Never);
 
 
         }
