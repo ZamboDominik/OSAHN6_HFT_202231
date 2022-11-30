@@ -19,7 +19,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{B0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{70ACE5C3-42C5-49B4-8580-472FBB7C7425}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSAHN6_HFT_202231.Test", "OSAHN6_HFT_202231.Test\OSAHN6_HFT_202231.Test.csproj", "{D48F0765-20F9-4380-A38D-C5D3B22FCF9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSAHN6_HFT_202231.Test", "OSAHN6_HFT_202231.Test\OSAHN6_HFT_202231.Test.csproj", "{D48F0765-20F9-4380-A38D-C5D3B22FCF9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{478E5F36-68E2-4E3A-A4A4-711883DF14FD}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

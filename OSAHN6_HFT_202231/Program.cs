@@ -44,7 +44,7 @@ namespace OSAHN6_HFT_202231.Client
                 .Add("List", () => crud.List<Team>())
                 .Add("Create", () => crud.Create<Team>())
                 .Add("Delete", () => crud.Delete<Team>())
-                .Add("Update", () => crud.Update("Team"))
+                .Add("Update", () => crud.Update<Team>())
                 .Add("Exit", ConsoleMenu.Close);
 
             var PlayerSubMenu = new ConsoleMenu(args, level: 1)
