@@ -51,13 +51,13 @@ namespace OSAHN6_HFT_202231.Client
                  .Add("List", () => crud.List<Player>())
                  .Add("Create", () => crud.Create<Player>())
                  .Add("Delete", () => crud.Delete<Player>())
-                 /*.Add("Update", () => crud.Update<Player>())*/
+                 .Add("Update", () => crud.Update<Player>())
                  .Add("Exit", ConsoleMenu.Close);
             var CoachSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => crud.List<Coach>())
                 .Add("Create", () => crud.Create<Coach>())
                 .Add("Delete", () => crud.Delete<Coach>())
-                /*.Add("Update", () => crud.Update<Coach>())*/
+                .Add("Update", () => crud.Update<Coach>())
                 .Add("Exit", ConsoleMenu.Close);
 
             var statsSubMenu = new ConsoleMenu(args, level: 1)
