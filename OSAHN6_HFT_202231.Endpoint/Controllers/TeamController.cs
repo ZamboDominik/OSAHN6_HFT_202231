@@ -37,7 +37,7 @@ namespace OSAHN6_HFT_202231.Endpoint.Controllers
         }
 
         [HttpPut]
-        public void Put([FromQuery] Team value)
+        public void Put([FromBody] Team value)
         {
             this.logic.Update(value);
         }

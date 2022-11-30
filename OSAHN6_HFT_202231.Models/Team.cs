@@ -13,9 +13,11 @@ namespace OSAHN6_HFT_202231.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int LuxuryTax { get; set; }
+
         [NotMapped]
         [JsonIgnore]
         public virtual Coach HeadCoach { get; set; }
+
         [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Player> Players { get; set; }
