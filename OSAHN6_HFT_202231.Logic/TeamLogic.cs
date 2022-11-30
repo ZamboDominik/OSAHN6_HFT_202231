@@ -77,7 +77,7 @@ namespace OSAHN6_HFT_202231.Logic
             var positions = from t in repo.ReadAll()
                             from p in t.Players
                             group p.Salary by p.Position into g
-                            select new {Position=g.Key, AvgSalary = g.Average(), MaxSalary = g.Max(),MinSalary = g.Min()}
+                            select new PositionStats{Position=g.Key, AvgSalary = g.Average(), MaxSalary = g.Max(),MinSalary = g.Min()}
                             ;
             return positions;                 
         }

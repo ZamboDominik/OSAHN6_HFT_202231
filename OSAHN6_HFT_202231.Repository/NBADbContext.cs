@@ -50,8 +50,8 @@ namespace OSAHN6_HFT_202231.Repository
                 new Player{ PlayerId = 9,Name = "JaVale McGee",TeamID=2, Position = "C", Salary=7},
                 new Player{ PlayerId = 10,Name = "Tim Hardaway",TeamID=2, Position = "SF", Salary=18},
          };
-            modelBuilder.Entity<Player>().HasOne(t => t.team).WithMany(t => t.Players).HasForeignKey(t => t.TeamID);
-            modelBuilder.Entity<Coach>().HasOne(t => t.team).WithOne(t => t.HeadCoach);
+            modelBuilder.Entity<Player>().HasOne(t => t.team).WithMany(t => t.Players).HasForeignKey(t => t.TeamID).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Coach>().HasOne(t => t.team).WithOne(t => t.HeadCoach).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Team>().HasData(teamArray);
             modelBuilder.Entity<Player>().HasData(playerList);
             modelBuilder.Entity<Coach>().HasData(coachList);

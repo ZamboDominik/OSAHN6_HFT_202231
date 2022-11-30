@@ -33,7 +33,7 @@ namespace OSAHN6_HFT_202231.Client
                 Console.WriteLine(item);
             }
             // Console.WriteLine(tl.);*/
-            rest = new RestService("http://localhost:5417/", "Coach");
+            rest = new RestService("http://localhost:5417/", "Team");
             CrudService crud = new CrudService(rest);
             NonCrudService nonCrud = new NonCrudService(rest);
 
@@ -58,15 +58,18 @@ namespace OSAHN6_HFT_202231.Client
                 .Add("Exit", ConsoleMenu.Close);
 
             var statsSubMenu = new ConsoleMenu(args, level: 1)
-                 .Add("Average car price", () => nonCrud.StarPlayers())
-                 /*.Add("Brand statistics", () => nonCrud.ReadBrandStats())
-                 .Add("Cars by Price range", () => nonCrud.GetCarsByPriceRange())*/
+                 .Add("StarPlayers", () => nonCrud.StarPlayers())
+                 .Add("Position Stats", () => nonCrud.PosStats())
+                 .Add("Players By Pos", () => nonCrud.PlayersByPos())
+                 .Add("List Coached BY", () => nonCrud.ListCoachedBy())
+                 .Add("Highest Salary On team", () => nonCrud.HighestSalary())
                  .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Teams", () => TeamMenu.Show())
                 .Add("Players", () => PlayerSubMenu.Show())
                 .Add("Coaches", () => CoachSubMenu.Show())
+                .Add("Stats",() => statsSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();
