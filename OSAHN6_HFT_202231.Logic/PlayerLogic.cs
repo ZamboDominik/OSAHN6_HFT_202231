@@ -28,13 +28,13 @@ namespace OSAHN6_HFT_202231.Logic
 
         public void Delete(int id)
         {
-            if (repo.ReadAll().Select(x => x.PlayerId).Contains(id)) throw new FormatException();
+           // if (!repo.ReadAll().Select(x => x.PlayerId).Contains(id)) throw new FormatException();
             this.repo.Delete(id);
         }
 
         public Player Read(int id)
         {
-            if (!repo.ReadAll().Select(x => x.PlayerId).Contains(id)) throw new FormatException();
+            //if (!repo.ReadAll().Select(x => x.PlayerId).Contains(id)) throw new FormatException();
             return this.repo.Read(id);
         }
 
