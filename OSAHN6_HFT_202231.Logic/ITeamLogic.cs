@@ -15,7 +15,7 @@ namespace OSAHN6_HFT_202231.Logic
         IQueryable<Team> ReadAll();
         void Update(Team item);
         public IQueryable StarPlayers();
-        public IQueryable PositionStats();
+        public IQueryable<PositionStats> PositionStats();
         public IQueryable<Player> ListPlayersCoachedBy(string name);
         public IQueryable<Player> PlayerListByPos(string team, string Pos);
         public Player HighestSalary(string team);

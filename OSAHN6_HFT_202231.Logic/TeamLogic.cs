@@ -72,7 +72,7 @@ namespace OSAHN6_HFT_202231.Logic
                           select p;
             return players;
         }
-        public IQueryable PositionStats() 
+        public IQueryable<PositionStats> PositionStats() 
         {
             var positions = from t in repo.ReadAll()
                             from p in t.Players
