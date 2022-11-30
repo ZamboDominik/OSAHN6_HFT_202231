@@ -51,7 +51,7 @@ namespace OSAHN6_HFT_202231.Logic
         {
             if(item.Name.Length <= 0 || item.Name.Length > 100) throw new FormatException();
             if(item.LuxuryTax <0 ) throw new FormatException();
-            if (repo.ReadAll().Select(x => x.Id).Contains(item.Id)) throw new FormatException();
+            //if (repo.ReadAll().Select(x => x.Id).Contains(item.Id)) throw new FormatException();
             this.repo.Update(item);
         }
         public Player HighestSalary(string team) 

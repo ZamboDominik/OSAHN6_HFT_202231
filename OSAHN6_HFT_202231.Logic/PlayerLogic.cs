@@ -21,7 +21,7 @@ namespace OSAHN6_HFT_202231.Logic
         public void Create(Player item)
         {
             if (item.Name.Length <=0 || item.Name.Length >100) throw new FormatException();
-            if (!repo.ReadAll().Select(x => x.PlayerId).Contains(item.PlayerId)) throw new FormatException();
+ 
             if(item.Salary<=0) throw new FormatException();
             this.repo.Create(item);
         }
@@ -46,7 +46,7 @@ namespace OSAHN6_HFT_202231.Logic
         public void Update(Player item)
         {
             if (item.Name.Length < 0 || item.Name.Length > 100) throw new FormatException();
-            if (repo.ReadAll().Select(x => x.PlayerId).Contains(item.PlayerId)) throw new FormatException();
+            
             if (item.Salary <= 0) throw new FormatException();
             this.repo.Update(item);
         }

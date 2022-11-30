@@ -23,7 +23,7 @@ namespace OSAHN6_HFT_202231.Logic
         public void Create(Coach item)
         {
             if (item.CoachName.Length < 0 || item.CoachName.Length > 100) throw new FormatException();
-            if (repo.ReadAll().Select(x => x.CoachId).Contains(item.CoachId)) throw new FormatException();
+            
             if (item.Salary<=0) throw new FormatException();
                 this.repo.Create(item);
         }
@@ -36,7 +36,7 @@ namespace OSAHN6_HFT_202231.Logic
 
         public Coach Read(int id)
         {
-            if (!repo.ReadAll().Select(x => x.CoachId).Contains(id)) throw new FormatException();
+          
             return this.repo.Read(id);
         }
 
