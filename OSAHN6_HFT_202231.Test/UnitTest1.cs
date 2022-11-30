@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OSAHN6_HFT_202231.Logic;
 using OSAHN6_HFT_202231.Models;
 using OSAHN6_HFT_202231.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -122,8 +123,15 @@ namespace OSAHN6_HFT_202231.Test
             Player ujbela = new Player() {Name="ujbela",Position="SG",Salary=15,TeamID=1 };
             playerLogic.Create(ujbela);
             mockPlayerRepository.Verify(v => v.Create(ujbela), Times.Once);
-            
-        
+
+            ujbela = new Player() { Name = "", Position = "SG", Salary = 15, TeamID = 1 };
+            Assert.Throws<FormatException>(() =>
+            {
+                playerLogic.Create(ujbela);
+            });
+            mockPlayerRepository.Verify(x => x.Create(ujbela), Times.Never);
+
+
         }
         [Test]
         public void CoachCreateTester()
@@ -131,6 +139,12 @@ namespace OSAHN6_HFT_202231.Test
             Coach newc = new Coach() {CoachName ="Coach",Salary=77,TeamID=3  };
             coachLogic.Create(newc);
             mockCoachRepository.Verify(v => v.Create(newc), Times.Once);
+           newc = new Coach() { CoachName = "Coach", Salary = -56, TeamID = 3 };
+            Assert.Throws<FormatException>(() =>
+            {
+                coachLogic.Create(newc);
+            });
+            mockCoachRepository.Verify(x => x.Create(newc), Times.Never);
         }
         [Test]
         public void TeamCreateTester()
@@ -138,6 +152,12 @@ namespace OSAHN6_HFT_202231.Test
             Team t = new Team() { Name = "Dont", LuxuryTax = 89 };
             teamLogic.Create(t);
             mockTeamRepository.Verify(v=>v.Create(t),Times.Once);
+            t = new Team() { Name = "", LuxuryTax = 89 };
+            Assert.Throws<FormatException>(() =>
+            {
+                teamLogic.Create(t);
+            });
+            mockTeamRepository.Verify(x => x.Create(t), Times.Never);
         }
         [Test]
         public void TeamDeleteTester()
